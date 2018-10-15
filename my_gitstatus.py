@@ -57,16 +57,6 @@ else:
         ahead = len([x for x in behead if x[0]=='>'])
         behind = len(behead) - ahead
 
-status_message = Popen(['git','status',],stdout=PIPE).communicate()[0].decode("utf-8")
-status = '0'
-# print(status_message)
-if status_message.find('You are currently rebasing') >= 0:
-    status = 'R'
-elif status_message.find('You are currently cherry-picking') >= 0:
-    status = 'C'
-elif status_message.startswith('On') and nb_U > 0:
-    status = 'S'
-
 
 out = ' '.join([
     branch,
@@ -76,6 +66,5 @@ out = ' '.join([
     conflicts,
     changed,
     untracked,
-    status,
     ])
 print(out, end='')

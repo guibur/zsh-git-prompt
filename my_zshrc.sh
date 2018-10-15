@@ -58,7 +58,6 @@ function update_current_git_vars() {
 	GIT_CONFLICTS=$__CURRENT_GIT_STATUS[5]
 	GIT_CHANGED=$__CURRENT_GIT_STATUS[6]
 	GIT_UNTRACKED=$__CURRENT_GIT_STATUS[7]
-    GIT_STATUS=$__CURRENT_GIT_STATUS[8]
 }
 
 
@@ -73,9 +72,6 @@ git_super_status() {
 		  STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_AHEAD$GIT_AHEAD%{${reset_color}%}"
 	  fi
 	  STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_SEPARATOR"
-	  if [[ "$GIT_STATUS" != "0" ]]; then
-		  STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_ACTION$GIT_STATUS%{${reset_color}%}"
-	  fi
 	  if [ "$GIT_STAGED" -ne "0" ]; then
 		  STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_STAGED$GIT_STAGED%{${reset_color}%}"
 	  fi
@@ -88,7 +84,7 @@ git_super_status() {
 	  if [ "$GIT_UNTRACKED" -ne "0" ]; then
 		  STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_UNTRACKED%{${reset_color}%}"
 	  fi
-	  if [ "$GIT_CHANGED" -eq "0" ] && [ "$GIT_CONFLICTS" -eq "0" ] && [ "$GIT_STAGED" -eq "0" ] && [ "$GIT_UNTRACKED" -eq "0" ] && [[ "$GIT_STATUS" = "0" ]]; then
+	  if [ "$GIT_CHANGED" -eq "0" ] && [ "$GIT_CONFLICTS" -eq "0" ] && [ "$GIT_STAGED" -eq "0" ] && [ "$GIT_UNTRACKED" -eq "0" ]; then
 		  STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_CLEAN"
 	  fi
 	  STATUS="$STATUS%{${reset_color}%}$ZSH_THEME_GIT_PROMPT_SUFFIX"
@@ -101,14 +97,12 @@ ZSH_THEME_GIT_PROMPT_PREFIX="("
 ZSH_THEME_GIT_PROMPT_SUFFIX=")"
 ZSH_THEME_GIT_PROMPT_SEPARATOR="%{$fg_bold[magenta]%}|%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg_bold[magenta]%}"
-ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[blue]%}%{✉ %2G%}"
-#ZSH_THEME_GIT_PROMPT_CONFLICTS="%{$fg[red]%}%{⚡%G%}"
-ZSH_THEME_GIT_PROMPT_CONFLICTS="%{$fg[red]%}%{☠ %2G%}"
-ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[yellow]%}%{✎ %2G%}"
+ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[blue]%}%{● %G%}"
+ZSH_THEME_GIT_PROMPT_CONFLICTS="%{$fg[red]%}%{✖_%G%}"
+ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[yellow]%}%{✚ %G%}"
 ZSH_THEME_GIT_PROMPT_BEHIND="%{↓%G%}"
 ZSH_THEME_GIT_PROMPT_AHEAD="%{↑%G%}"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{…%G%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}%{✔%G%}"
-ZSH_THEME_GIT_PROMPT_ACTION="%{$fg_bold[cyan]%}%{✈ %2G%}"
 
 

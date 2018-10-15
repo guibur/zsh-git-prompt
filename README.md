@@ -1,3 +1,5 @@
+Fork from the official repo https://github.com/olivierverdier/zsh-git-prompt
+
 # Informative git prompt for zsh
 
 [![Build Status](https://travis-ci.org/olivierverdier/zsh-git-prompt.svg)](https://travis-ci.org/olivierverdier/zsh-git-prompt)
